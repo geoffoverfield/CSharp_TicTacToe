@@ -63,6 +63,26 @@ namespace CSharp_TicTacToe.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BlueFelt_Background {
+            get {
+                object obj = ResourceManager.GetObject("BlueFelt_Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GreenFelt_Background {
+            get {
+                object obj = ResourceManager.GetObject("GreenFelt_Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap O1 {
             get {
                 object obj = ResourceManager.GetObject("O1", resourceCulture);
@@ -116,6 +136,16 @@ namespace CSharp_TicTacToe.Properties {
         internal static System.Drawing.Bitmap O6 {
             get {
                 object obj = ResourceManager.GetObject("O6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RedFelt_Background {
+            get {
+                object obj = ResourceManager.GetObject("RedFelt_Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

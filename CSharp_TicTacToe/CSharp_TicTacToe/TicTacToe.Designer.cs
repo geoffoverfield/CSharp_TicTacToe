@@ -85,7 +85,7 @@
             // 
             // lbl1
             // 
-            this.lbl1.BackColor = System.Drawing.Color.LightGray;
+            this.lbl1.BackColor = System.Drawing.Color.Transparent;
             this.lbl1.Location = new System.Drawing.Point(28, 42);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(150, 150);
@@ -94,7 +94,7 @@
             // 
             // lbl2
             // 
-            this.lbl2.BackColor = System.Drawing.Color.LightGray;
+            this.lbl2.BackColor = System.Drawing.Color.Transparent;
             this.lbl2.Location = new System.Drawing.Point(208, 42);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(150, 150);
@@ -103,7 +103,7 @@
             // 
             // lbl3
             // 
-            this.lbl3.BackColor = System.Drawing.Color.LightGray;
+            this.lbl3.BackColor = System.Drawing.Color.Transparent;
             this.lbl3.Location = new System.Drawing.Point(388, 42);
             this.lbl3.Name = "lbl3";
             this.lbl3.Size = new System.Drawing.Size(150, 150);
@@ -112,7 +112,7 @@
             // 
             // lbl4
             // 
-            this.lbl4.BackColor = System.Drawing.Color.LightGray;
+            this.lbl4.BackColor = System.Drawing.Color.Transparent;
             this.lbl4.Location = new System.Drawing.Point(28, 223);
             this.lbl4.Name = "lbl4";
             this.lbl4.Size = new System.Drawing.Size(150, 150);
@@ -121,7 +121,7 @@
             // 
             // lbl5
             // 
-            this.lbl5.BackColor = System.Drawing.Color.LightGray;
+            this.lbl5.BackColor = System.Drawing.Color.Transparent;
             this.lbl5.Location = new System.Drawing.Point(208, 223);
             this.lbl5.Name = "lbl5";
             this.lbl5.Size = new System.Drawing.Size(150, 150);
@@ -130,7 +130,7 @@
             // 
             // lbl6
             // 
-            this.lbl6.BackColor = System.Drawing.Color.LightGray;
+            this.lbl6.BackColor = System.Drawing.Color.Transparent;
             this.lbl6.Location = new System.Drawing.Point(388, 223);
             this.lbl6.Name = "lbl6";
             this.lbl6.Size = new System.Drawing.Size(150, 150);
@@ -139,7 +139,7 @@
             // 
             // lbl7
             // 
-            this.lbl7.BackColor = System.Drawing.Color.LightGray;
+            this.lbl7.BackColor = System.Drawing.Color.Transparent;
             this.lbl7.Location = new System.Drawing.Point(28, 404);
             this.lbl7.Name = "lbl7";
             this.lbl7.Size = new System.Drawing.Size(150, 150);
@@ -148,7 +148,7 @@
             // 
             // lbl8
             // 
-            this.lbl8.BackColor = System.Drawing.Color.LightGray;
+            this.lbl8.BackColor = System.Drawing.Color.Transparent;
             this.lbl8.Location = new System.Drawing.Point(208, 404);
             this.lbl8.Name = "lbl8";
             this.lbl8.Size = new System.Drawing.Size(150, 150);
@@ -157,7 +157,7 @@
             // 
             // lbl9
             // 
-            this.lbl9.BackColor = System.Drawing.Color.LightGray;
+            this.lbl9.BackColor = System.Drawing.Color.Transparent;
             this.lbl9.Location = new System.Drawing.Point(388, 404);
             this.lbl9.Name = "lbl9";
             this.lbl9.Size = new System.Drawing.Size(150, 150);
@@ -212,6 +212,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = global::CSharp_TicTacToe.Properties.Resources.BlueFelt_Background;
             this.ClientSize = new System.Drawing.Size(584, 631);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -232,6 +233,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TicTacToe";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Geoff\'s Tic Tac Toe";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

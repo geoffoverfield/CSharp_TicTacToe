@@ -42,10 +42,15 @@ namespace CSharp_TicTacToe
             arRightToLeft[1] = dRowsAndColumns["row2"][1];
             arRightToLeft[2] = dRowsAndColumns["row3"][0];
 
+            bool bLeft, bRight;
+            bLeft = bRight = true;
+
             foreach (var sVal in arLeftToRight)
-                if (string.IsNullOrEmpty(sVal)) return false;
+                if (string.IsNullOrEmpty(sVal)) bLeft = false;
             foreach (var sVal in arRightToLeft)
-                if (string.IsNullOrEmpty(sVal)) return false;
+                if (string.IsNullOrEmpty(sVal)) bRight = false;
+
+            if (!bLeft && !bRight) return false;
 
             if (arLeftToRight[0] == arLeftToRight[1] &&
                 arLeftToRight[1] == arLeftToRight[2]) return true;
@@ -71,6 +76,17 @@ namespace CSharp_TicTacToe
                 dRowsAndColumns.Add(sValue, new string[3]);
         }
 
+        private bool drawExists()
+        {
+            if (m_bGameStarted && !m_bGameWon)
+            {
+                if (lbl1.Image != null && lbl2.Image != null && lbl3.Image != null && lbl4.Image != null && lbl5.Image != null &&
+                    lbl6.Image != null && lbl7.Image != null && lbl8.Image != null && lbl9.Image != null) return true;
+                else return false;
+            }
+            return false;
+        }
+
         private void loadImages()
         {
             player1Imgs = new Bitmap[6];
@@ -94,24 +110,33 @@ namespace CSharp_TicTacToe
 
         private void nextPlayer()
         {
-            if (eTurn == PlayerTurn.Player1)
-                eTurn = PlayerTurn.Player2;
-            else eTurn = PlayerTurn.Player1;
+            if (!m_bGameWon)
+            {
+                if (eTurn == PlayerTurn.Player1)
+                    eTurn = PlayerTurn.Player2;
+                else eTurn = PlayerTurn.Player1;
+            }
         }
 
         private void updateTurnLabel()
         {
             if (!m_bGameWon)
             {
-                switch (eTurn)
+                if (drawExists())
                 {
-                    case PlayerTurn.Player1:
-                        lblPlayerTurn.Text = "Player 1s Turn";
-                        break;
-                    case PlayerTurn.Player2:
-                        lblPlayerTurn.Text = "Player 2s Turn";
-                        break;
+                    lblPlayerTurn.Text = "Draw!";
+                    m_bGameWon = true;
                 }
+                else
+                    switch (eTurn)
+                    {
+                        case PlayerTurn.Player1:
+                            lblPlayerTurn.Text = "Player 1s Turn";
+                            break;
+                        case PlayerTurn.Player2:
+                            lblPlayerTurn.Text = "Player 2s Turn";
+                            break;
+                    }
             }
             else
             {
@@ -159,20 +184,20 @@ namespace CSharp_TicTacToe
             {
                 case PlayerTurn.Player1:
                     lbl1.Image = player1Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row1"][0] = dRowsAndColumns["column1"][0] = "x";
+                    dRowsAndColumns["row1"][0] = dRowsAndColumns["column1"][0] = "o";
                     break;
                 case PlayerTurn.Player2:
                     lbl1.Image = player2Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row1"][0] = dRowsAndColumns["column1"][0] = "o";
+                    dRowsAndColumns["row1"][0] = dRowsAndColumns["column1"][0] = "x";
                     break;
             }
-            nextPlayer();
             if (winnerExists())
             {
                 m_bGameStarted = false;
                 m_bGameWon = true;
                 eWinner = (Winner)eTurn;
             }
+            nextPlayer();
             updateTurnLabel();
         }
 
@@ -184,11 +209,11 @@ namespace CSharp_TicTacToe
             {
                 case PlayerTurn.Player1:
                     lbl2.Image = player1Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row1"][1] = dRowsAndColumns["column2"][0] = "x";
+                    dRowsAndColumns["row1"][1] = dRowsAndColumns["column2"][0] = "o";
                     break;
                 case PlayerTurn.Player2:
                     lbl2.Image = player2Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row1"][1] = dRowsAndColumns["column2"][0] = "o";
+                    dRowsAndColumns["row1"][1] = dRowsAndColumns["column2"][0] = "x";
                     break;
             }
             if (winnerExists())
@@ -209,20 +234,20 @@ namespace CSharp_TicTacToe
             {
                 case PlayerTurn.Player1:
                     lbl3.Image = player1Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row1"][2] = dRowsAndColumns["column3"][0] = "x";
+                    dRowsAndColumns["row1"][2] = dRowsAndColumns["column3"][0] = "o";
                     break;
                 case PlayerTurn.Player2:
                     lbl3.Image = player2Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row1"][2] = dRowsAndColumns["column3"][0] = "o";
+                    dRowsAndColumns["row1"][2] = dRowsAndColumns["column3"][0] = "x";
                     break;
             }
-            nextPlayer();
             if (winnerExists())
             {
                 m_bGameStarted = false;
                 m_bGameWon = true;
                 eWinner = (Winner)eTurn;
             }
+            nextPlayer();
             updateTurnLabel();
         }
 
@@ -234,20 +259,20 @@ namespace CSharp_TicTacToe
             {
                 case PlayerTurn.Player1:
                     lbl4.Image = player1Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row2"][0] = dRowsAndColumns["column1"][1] = "x";
+                    dRowsAndColumns["row2"][0] = dRowsAndColumns["column1"][1] = "o";
                     break;
                 case PlayerTurn.Player2:
                     lbl4.Image = player2Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row2"][0] = dRowsAndColumns["column1"][1] = "o";
+                    dRowsAndColumns["row2"][0] = dRowsAndColumns["column1"][1] = "x";
                     break;
             }
-            nextPlayer();
             if (winnerExists())
             {
                 m_bGameStarted = false;
                 m_bGameWon = true;
                 eWinner = (Winner)eTurn;
             }
+            nextPlayer();
             updateTurnLabel();
         }
 
@@ -259,20 +284,20 @@ namespace CSharp_TicTacToe
             {
                 case PlayerTurn.Player1:
                     lbl5.Image = player1Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row2"][1] = dRowsAndColumns["column2"][1] = "x";
+                    dRowsAndColumns["row2"][1] = dRowsAndColumns["column2"][1] = "o";
                     break;
                 case PlayerTurn.Player2:
                     lbl5.Image = player2Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row2"][1] = dRowsAndColumns["column2"][1] = "o";
+                    dRowsAndColumns["row2"][1] = dRowsAndColumns["column2"][1] = "x";
                     break;
             }
-            nextPlayer();
             if (winnerExists())
             {
                 m_bGameStarted = false;
                 m_bGameWon = true;
                 eWinner = (Winner)eTurn;
             }
+            nextPlayer();
             updateTurnLabel();
         }
 
@@ -284,20 +309,20 @@ namespace CSharp_TicTacToe
             {
                 case PlayerTurn.Player1:
                     lbl6.Image = player1Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row2"][2] = dRowsAndColumns["column3"][1] = "x";
+                    dRowsAndColumns["row2"][2] = dRowsAndColumns["column3"][1] = "o";
                     break;
                 case PlayerTurn.Player2:
                     lbl6.Image = player2Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row2"][2] = dRowsAndColumns["column3"][1] = "o";
+                    dRowsAndColumns["row2"][2] = dRowsAndColumns["column3"][1] = "x";
                     break;
             }
-            nextPlayer();
             if (winnerExists())
             {
                 m_bGameStarted = false;
                 m_bGameWon = true;
                 eWinner = (Winner)eTurn;
             }
+            nextPlayer();
             updateTurnLabel();
         }
 
@@ -309,20 +334,20 @@ namespace CSharp_TicTacToe
             {
                 case PlayerTurn.Player1:
                     lbl7.Image = player1Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row3"][0] = dRowsAndColumns["column1"][2] = "x";
+                    dRowsAndColumns["row3"][0] = dRowsAndColumns["column1"][2] = "o";
                     break;
                 case PlayerTurn.Player2:
                     lbl7.Image = player2Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row3"][0] = dRowsAndColumns["column1"][2] = "o";
+                    dRowsAndColumns["row3"][0] = dRowsAndColumns["column1"][2] = "x";
                     break;
             }
-            nextPlayer();
             if (winnerExists())
             {
                 m_bGameStarted = false;
                 m_bGameWon = true;
                 eWinner = (Winner)eTurn;
             }
+            nextPlayer();
             updateTurnLabel();
         }
 
@@ -334,20 +359,20 @@ namespace CSharp_TicTacToe
             {
                 case PlayerTurn.Player1:
                     lbl8.Image = player1Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row3"][1] = dRowsAndColumns["column2"][2] = "x";
+                    dRowsAndColumns["row3"][1] = dRowsAndColumns["column2"][2] = "o";
                     break;
                 case PlayerTurn.Player2:
                     lbl8.Image = player2Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row3"][1] = dRowsAndColumns["column2"][2] = "o";
+                    dRowsAndColumns["row3"][1] = dRowsAndColumns["column2"][2] = "x";
                     break;
             }
-            nextPlayer();
             if (winnerExists())
             {
                 m_bGameStarted = false;
                 m_bGameWon = true;
                 eWinner = (Winner)eTurn;
             }
+            nextPlayer();
             updateTurnLabel();
         }
 
@@ -359,20 +384,20 @@ namespace CSharp_TicTacToe
             {
                 case PlayerTurn.Player1:
                     lbl9.Image = player1Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row3"][2] = dRowsAndColumns["column3"][2] = "x";
+                    dRowsAndColumns["row3"][2] = dRowsAndColumns["column3"][2] = "o";
                     break;
                 case PlayerTurn.Player2:
                     lbl9.Image = player2Imgs[m_pRandom.Next(0, 6)];
-                    dRowsAndColumns["row3"][2] = dRowsAndColumns["column3"][2] = "o";
+                    dRowsAndColumns["row3"][2] = dRowsAndColumns["column3"][2] = "x";
                     break;
             }
-            nextPlayer();
             if (winnerExists())
             {
                 m_bGameStarted = false;
                 m_bGameWon = true;
                 eWinner = (Winner)eTurn;
             }
+            nextPlayer();
             updateTurnLabel();
         }
 
@@ -388,8 +413,9 @@ namespace CSharp_TicTacToe
                 if (!m_bGameWon)
                 {
                     //Message to warn of game restart.
-                    if (MessageBox.Show("Game in Progress!", "You are about to restart your game.  Do you wish to continue?",
-                        MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel) return;
+                    MessageBox pDlg = new MessageBox("Game in Progress!", "You are about to restart your game.  Do you wish to continue?");
+                    pDlg.ShowDialog();
+                    if (!pDlg.bContinue) return;
                 }
                 m_bGameWon = false;
                 m_bGameStarted = true;
@@ -410,7 +436,8 @@ namespace CSharp_TicTacToe
         private void creditToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string sMsg = "Created, Designed and Programmed by Geoff Overfield.\n(c)[BOSS] Games 2015";
-            MessageBox.Show(sMsg);
+            MessageBox pDlg = new MessageBox("Game Credits", sMsg, false);
+            pDlg.ShowDialog();
         }
     }
 }
